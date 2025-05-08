@@ -27,7 +27,7 @@ contract Factory is Initializable, IFactory, PoolDeployer, NoDelegateCall {
     uint256[50] private __gap;
 
     /// @notice Initialize instead of constructor
-    function initialize(address _owner, address _PoolImplementation, address _PoolImplementationAdmin) external initializer {
+    function initialize(address _PoolImplementation, address _PoolImplementationAdmin) external initializer {
         PoolImplementation = _PoolImplementation;
         PoolImplementationAdmin = _PoolImplementationAdmin;
 
