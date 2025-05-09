@@ -42,7 +42,7 @@ contract PoolDeployer is IPoolDeployer {
             ""
         ));
 
-        Pool(pool).initialize();
+        Pool(pool).initializePool();
 
         delete parameters;
     }

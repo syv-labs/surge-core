@@ -112,7 +112,7 @@ contract Pool is Initializable, IPool, NoDelegateCall {
         _;
     }
 
-    function initialize() external initializer {
+    function initializePool() external initializer {
         int24 _tickSpacing;
         (factory, token0, token1, fee, _tickSpacing) = IPoolDeployer(msg.sender).parameters();
         tickSpacing = _tickSpacing;
