@@ -18,7 +18,6 @@ import './libraries/LiquidityMath.sol';
 import './libraries/SqrtPriceMath.sol';
 import './libraries/SwapMath.sol';
 
-import './interfaces/IPoolDeployer.sol';
 import './interfaces/IFactory.sol';
 import './interfaces/IERC20Minimal.sol';
 import './interfaces/callback/IMintCallback.sol';
@@ -110,9 +109,17 @@ contract Pool is Initializable, IPool {
         _;
     }
 
-    function initializePool() external initializer {
-        int24 _tickSpacing;
-        (factory, token0, token1, fee, _tickSpacing) = IPoolDeployer(msg.sender).parameters();
+    function initializePool(
+        address _factory,
+        address _token0,
+        address _token1,
+        uint24 _fee,
+        int24 _tickSpacing
+    ) external initializer {
+        factory = _factory;
+        token0 = _token0;
+        token1 = _token1;
+        fee = _fee;
         tickSpacing = _tickSpacing;
 
         maxLiquidityPerTick = Tick.tickSpacingToMaxLiquidityPerTick(_tickSpacing);
