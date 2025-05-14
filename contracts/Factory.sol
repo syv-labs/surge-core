@@ -4,14 +4,13 @@ pragma solidity =0.7.6;
 import './interfaces/IFactory.sol';
 
 import './PoolDeployer.sol';
-import './NoDelegateCall.sol';
 
 import './Pool.sol';
 import "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol";
 
 /// @title Canonical   factory
 /// @notice Deploys   pools and manages ownership and control over pool protocol fees
-contract Factory is Initializable, IFactory, PoolDeployer, NoDelegateCall {
+contract Factory is Initializable, IFactory, PoolDeployer {
     /// @inheritdoc IFactory
     address public override owner;
 
@@ -47,7 +46,7 @@ contract Factory is Initializable, IFactory, PoolDeployer, NoDelegateCall {
         address tokenA,
         address tokenB,
         uint24 fee
-    ) external override noDelegateCall returns (address pool) {
+    ) external override returns (address pool) {
         require(tokenA != tokenB);
         (address token0, address token1) = tokenA < tokenB ? (tokenA, tokenB) : (tokenB, tokenA);
         require(token0 != address(0));

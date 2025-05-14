@@ -3,8 +3,6 @@ pragma solidity =0.7.6;
 
 import './interfaces/IPool.sol';
 
-import './NoDelegateCall.sol';
-
 import './libraries/LowGasSafeMath.sol';
 import './libraries/SafeCast.sol';
 import './libraries/Tick.sol';
@@ -28,7 +26,7 @@ import './interfaces/callback/ISwapCallback.sol';
 import './interfaces/callback/IFlashCallback.sol';
 import "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol";
 
-contract Pool is Initializable, IPool, NoDelegateCall {
+contract Pool is Initializable, IPool {
     using LowGasSafeMath for uint256;
     using LowGasSafeMath for int256;
     using SafeCast for uint256;
@@ -157,7 +155,6 @@ contract Pool is Initializable, IPool, NoDelegateCall {
         external
         view
         override
-        noDelegateCall
         returns (
             int56 tickCumulativeInside,
             uint160 secondsPerLiquidityInsideX128,
@@ -235,7 +232,6 @@ contract Pool is Initializable, IPool, NoDelegateCall {
         external
         view
         override
-        noDelegateCall
         returns (int56[] memory tickCumulatives, uint160[] memory secondsPerLiquidityCumulativeX128s)
     {
         return
@@ -254,7 +250,6 @@ contract Pool is Initializable, IPool, NoDelegateCall {
         external
         override
         lock
-        noDelegateCall
     {
         uint16 observationCardinalityNextOld = slot0.observationCardinalityNext; // for the event
         uint16 observationCardinalityNextNew =
@@ -303,7 +298,6 @@ contract Pool is Initializable, IPool, NoDelegateCall {
     /// @return amount1 the amount of token1 owed to the pool, negative if the pool should pay the recipient
     function _modifyPosition(ModifyPositionParams memory params)
         private
-        noDelegateCall
         returns (
             Position.Info storage position,
             int256 amount0,
@@ -597,7 +591,7 @@ contract Pool is Initializable, IPool, NoDelegateCall {
         int256 amountSpecified,
         uint160 sqrtPriceLimitX96,
         bytes calldata data
-    ) external override noDelegateCall returns (int256 amount0, int256 amount1) {
+    ) external override returns (int256 amount0, int256 amount1) {
         require(amountSpecified != 0, 'AS');
 
         Slot0 memory slot0Start = slot0;
@@ -791,7 +785,7 @@ contract Pool is Initializable, IPool, NoDelegateCall {
         uint256 amount0,
         uint256 amount1,
         bytes calldata data
-    ) external override lock noDelegateCall {
+    ) external override lock {
         uint128 _liquidity = liquidity;
         require(_liquidity > 0, 'L');
 
