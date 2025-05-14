@@ -452,7 +452,6 @@ contract Pool is Initializable, IPool {
     }
 
     /// @inheritdoc IPoolActions
-    /// @dev noDelegateCall is applied indirectly via _modifyPosition
     function mint(
         address recipient,
         int24 tickLower,
@@ -512,7 +511,6 @@ contract Pool is Initializable, IPool {
     }
 
     /// @inheritdoc IPoolActions
-    /// @dev noDelegateCall is applied indirectly via _modifyPosition
     function burn(
         int24 tickLower,
         int24 tickUpper,
