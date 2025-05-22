@@ -29,6 +29,7 @@ contract MockTimePoolDeployer is IPoolDeployer {
         pool = address(
             new MockTimePool{salt: keccak256(abi.encodePacked(token0, token1, fee, tickSpacing))}()
         );
+        MockTimePool(pool).initializePool(factory, token0, token1, fee, tickSpacing);
         emit PoolDeployed(pool);
         delete parameters;
     }

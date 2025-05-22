@@ -1,11 +1,13 @@
 import { BigNumber } from 'ethers'
-import { ethers } from 'hardhat'
+import { ethers, upgrades } from 'hardhat'
 import { MockTimePool } from '../../typechain/MockTimePool'
+import { getAdminAddress } from '@openzeppelin/upgrades-core'
 import { TestERC20 } from '../../typechain/TestERC20'
 import { Factory } from '../../typechain/Factory'
 import { TestCallee } from '../../typechain/TestCallee'
 import { TestRouter } from '../../typechain/TestRouter'
 import { MockTimePoolDeployer } from '../../typechain/MockTimePoolDeployer'
+import { encodePriceSqrt } from './utilities'
 
 import { Fixture } from 'ethereum-waffle'
 
@@ -15,8 +17,12 @@ interface FactoryFixture {
 
 async function factoryFixture(): Promise<FactoryFixture> {
   const factoryFactory = await ethers.getContractFactory('Factory')
-  const factory = (await factoryFactory.deploy()) as Factory
-  return { factory }
+    const Pool = await ethers.getContractFactory('Pool')
+    const pool = await Pool.deploy()
+    const factory = await upgrades.deployProxy(factoryFactory, [pool.address, pool.address], { initializer: 'initialize' }) as Factory
+    const proxyAdmin = await getAdminAddress(ethers.provider, factory.address)
+    await factory.setPoolImplementationAdmin(proxyAdmin)
+    return {factory }
 }
 
 interface TokensFixture {
