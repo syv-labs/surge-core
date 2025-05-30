@@ -1,40 +1,37 @@
 {
-  "name": "@syv-labs/surge-core",
-  "description": "🦄 Core smart contracts of Syv labs",
+  "name": "@uniswap/v3-core",
+  "description": "🦄 Core smart contracts of Uniswap V3",
   "license": "BUSL-1.1",
   "publishConfig": {
     "access": "public"
   },
   "version": "1.0.1",
-  "homepage": "https://syv-labs.org",
+  "homepage": "https://uniswap.org",
   "keywords": [
-    "syv-labs",
-    "surge-core"
+    "uniswap",
+    "core",
+    "v3"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/syv-labs/surge-core"
+    "url": "https://github.com/Uniswap/uniswap-v3-core"
   },
   "files": [
     "contracts/interfaces",
     "contracts/libraries",
-    "artifacts/contracts/Factory.sol/Factory.json",
-    "artifacts/contracts/Pool.sol/Pool.json",
+    "artifacts/contracts/UniswapV3Factory.sol/UniswapV3Factory.json",
+    "artifacts/contracts/UniswapV3Pool.sol/UniswapV3Pool.json",
     "artifacts/contracts/interfaces/**/*.json",
     "!artifacts/contracts/interfaces/**/*.dbg.json"
   ],
   "engines": {
     "node": ">=10"
   },
-  "dependencies": {
-    "@openzeppelin/contracts": "3.4.2-solc-0.7",
-    "@openzeppelin/contracts-upgradeable": "3.4.2-solc-0.7"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
     "@nomiclabs/hardhat-etherscan": "^2.1.8",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
-    "@openzeppelin/hardhat-upgrades": "1.22.1",
     "@typechain/ethers-v5": "^4.0.0",
     "@types/chai": "^4.2.6",
     "@types/mocha": "^5.2.7",
