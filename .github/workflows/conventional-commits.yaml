@@ -1,11 +1,11 @@
 name: Ensure Conventional Commit message
 
 on:
-  pull_request_target:
-    types:
-      - opened
-      - edited
-      - reopened
+  pull_request:
+    types: [opened, edited, synchronize]
+    branches:
+      - main
+      - master
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
