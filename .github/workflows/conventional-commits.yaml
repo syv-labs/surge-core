@@ -2,6 +2,8 @@ name: Ensure Conventional Commit message
 
 on:
   pull_request:
+    branches:
+      - main
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -9,6 +11,8 @@ concurrency:
 
 jobs:
   ensure-CC:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+
     runs-on: ubuntu-22.04
 
     steps:
