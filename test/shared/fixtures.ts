@@ -17,12 +17,14 @@ interface FactoryFixture {
 
 async function factoryFixture(): Promise<FactoryFixture> {
   const factoryFactory = await ethers.getContractFactory('Factory')
-    const Pool = await ethers.getContractFactory('Pool')
-    const pool = await Pool.deploy()
-    const factory = await upgrades.deployProxy(factoryFactory, [pool.address, pool.address], { initializer: 'initialize' }) as Factory
-    const proxyAdmin = await getAdminAddress(ethers.provider, factory.address)
-    await factory.setPoolImplementationAdmin(proxyAdmin)
-    return {factory }
+  const Pool = await ethers.getContractFactory('Pool')
+  const pool = await Pool.deploy()
+  const factory = (await upgrades.deployProxy(factoryFactory, [pool.address, pool.address], {
+    initializer: 'initialize',
+  })) as Factory
+  const proxyAdmin = await getAdminAddress(ethers.provider, factory.address)
+  await factory.setPoolImplementationAdmin(proxyAdmin)
+  return { factory }
 }
 
 interface TokensFixture {
@@ -49,12 +51,7 @@ type TokensAndFactoryFixture = FactoryFixture & TokensFixture
 interface PoolFixture extends TokensAndFactoryFixture {
   swapTargetCallee: TestCallee
   swapTargetRouter: TestRouter
-  createPool(
-    fee: number,
-    tickSpacing: number,
-    firstToken?: TestERC20,
-    secondToken?: TestERC20
-  ): Promise<MockTimePool>
+  createPool(fee: number, tickSpacing: number, firstToken?: TestERC20, secondToken?: TestERC20): Promise<MockTimePool>
 }
 
 // Monday, October 5, 2020 9:00:00 AM GMT-05:00

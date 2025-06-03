@@ -1,0 +1,30 @@
+name: Install node.js dependencies
+description: 'Setup node.js, install npm and yarn dependencies'
+
+inputs:
+  node-version:
+    description: 'The version of node.js CLI to install'
+    required: true
+    default: '18'
+
+runs:
+  using: 'composite'
+
+  steps:
+    - name: Check out Git repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: '${{ inputs.node-version }}'
+        cache: 'npm'
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Install yarn
+      shell: bash
+      run: npm install --global yarn
+
+    - name: Install yarn dependencies
+      shell: bash
+      run: yarn install --frozen-lockfile

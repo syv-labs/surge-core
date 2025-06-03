@@ -6,7 +6,7 @@ import './interfaces/IFactory.sol';
 import './PoolDeployer.sol';
 
 import './Pool.sol';
-import "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol";
+import '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol';
 
 /// @title Canonical   factory
 /// @notice Deploys   pools and manages ownership and control over pool protocol fees

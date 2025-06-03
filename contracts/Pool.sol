@@ -23,7 +23,7 @@ import './interfaces/IERC20Minimal.sol';
 import './interfaces/callback/IMintCallback.sol';
 import './interfaces/callback/ISwapCallback.sol';
 import './interfaces/callback/IFlashCallback.sol';
-import "@openzeppelin/contracts-upgradeable/proxy/Initializable.sol";
+import '@openzeppelin/contracts-upgradeable/proxy/Initializable.sol';
 
 contract Pool is Initializable, IPool {
     using LowGasSafeMath for uint256;
@@ -253,11 +253,7 @@ contract Pool is Initializable, IPool {
     }
 
     /// @inheritdoc IPoolActions
-    function increaseObservationCardinalityNext(uint16 observationCardinalityNext)
-        external
-        override
-        lock
-    {
+    function increaseObservationCardinalityNext(uint16 observationCardinalityNext) external override lock {
         uint16 observationCardinalityNextOld = slot0.observationCardinalityNext; // for the event
         uint16 observationCardinalityNextNew =
             observations.grow(observationCardinalityNextOld, observationCardinalityNext);

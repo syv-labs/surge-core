@@ -20,9 +20,7 @@ contract TestReentrantCallee is ISwapCallback {
         bytes calldata
     ) external override {
         // try to reenter swap
-        try IPool(msg.sender).swap(address(0), false, 1, 0, new bytes(0)) {} catch Error(
-            string memory reason
-        ) {
+        try IPool(msg.sender).swap(address(0), false, 1, 0, new bytes(0)) {} catch Error(string memory reason) {
             require(keccak256(abi.encode(reason)) == keccak256(abi.encode(expectedReason)));
         }
 

@@ -26,9 +26,7 @@ contract MockTimePoolDeployer is IPoolDeployer {
         int24 tickSpacing
     ) external returns (address pool) {
         parameters = Parameters({factory: factory, token0: token0, token1: token1, fee: fee, tickSpacing: tickSpacing});
-        pool = address(
-            new MockTimePool{salt: keccak256(abi.encodePacked(token0, token1, fee, tickSpacing))}()
-        );
+        pool = address(new MockTimePool{salt: keccak256(abi.encodePacked(token0, token1, fee, tickSpacing))}());
         MockTimePool(pool).initializePool(factory, token0, token1, fee, tickSpacing);
         emit PoolDeployed(pool);
         delete parameters;
