@@ -60,8 +60,7 @@ contract TestRouter is ISwapCallback {
 
         if (pools.length == 1) {
             // get the address and amount of the token that we need to pay
-            address tokenToBePaid =
-                amount0Delta > 0 ? IPool(msg.sender).token0() : IPool(msg.sender).token1();
+            address tokenToBePaid = amount0Delta > 0 ? IPool(msg.sender).token0() : IPool(msg.sender).token1();
             int256 amountToBePaid = amount0Delta > 0 ? amount0Delta : amount1Delta;
 
             bool zeroForOne = tokenToBePaid == IPool(pools[0]).token1();
@@ -74,17 +73,9 @@ contract TestRouter is ISwapCallback {
             );
         } else {
             if (amount0Delta > 0) {
-                IERC20Minimal(IPool(msg.sender).token0()).transferFrom(
-                    payer,
-                    msg.sender,
-                    uint256(amount0Delta)
-                );
+                IERC20Minimal(IPool(msg.sender).token0()).transferFrom(payer, msg.sender, uint256(amount0Delta));
             } else {
-                IERC20Minimal(IPool(msg.sender).token1()).transferFrom(
-                    payer,
-                    msg.sender,
-                    uint256(amount1Delta)
-                );
+                IERC20Minimal(IPool(msg.sender).token1()).transferFrom(payer, msg.sender, uint256(amount1Delta));
             }
         }
     }

@@ -1683,9 +1683,7 @@ describe('Pool', () => {
     })
 
     it('cannot reenter from swap callback', async () => {
-      const reentrant = (await (
-        await ethers.getContractFactory('TestReentrantCallee')
-      ).deploy()) as TestReentrantCallee
+      const reentrant = (await (await ethers.getContractFactory('TestReentrantCallee')).deploy()) as TestReentrantCallee
 
       // the tests happen in solidity
       await expect(reentrant.swapToReenter(pool.address)).to.be.revertedWith('Unable to reenter')

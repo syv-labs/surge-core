@@ -16,13 +16,7 @@ contract TestSwapPay is ISwapCallback {
         uint256 pay0,
         uint256 pay1
     ) external {
-        IPool(pool).swap(
-            recipient,
-            zeroForOne,
-            amountSpecified,
-            sqrtPriceX96,
-            abi.encode(msg.sender, pay0, pay1)
-        );
+        IPool(pool).swap(recipient, zeroForOne, amountSpecified, sqrtPriceX96, abi.encode(msg.sender, pay0, pay1));
     }
 
     function swapCallback(

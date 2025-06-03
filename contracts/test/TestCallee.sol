@@ -108,10 +108,8 @@ contract TestCallee is IMintCallback, ISwapCallback, IFlashCallback {
         address sender = abi.decode(data, (address));
 
         emit MintCallback(amount0Owed, amount1Owed);
-        if (amount0Owed > 0)
-            IERC20Minimal(IPool(msg.sender).token0()).transferFrom(sender, msg.sender, amount0Owed);
-        if (amount1Owed > 0)
-            IERC20Minimal(IPool(msg.sender).token1()).transferFrom(sender, msg.sender, amount1Owed);
+        if (amount0Owed > 0) IERC20Minimal(IPool(msg.sender).token0()).transferFrom(sender, msg.sender, amount0Owed);
+        if (amount1Owed > 0) IERC20Minimal(IPool(msg.sender).token1()).transferFrom(sender, msg.sender, amount1Owed);
     }
 
     event FlashCallback(uint256 fee0, uint256 fee1);

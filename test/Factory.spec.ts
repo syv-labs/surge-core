@@ -1,5 +1,5 @@
 import { Wallet } from 'ethers'
-import { ethers, waffle, upgrades} from 'hardhat'
+import { ethers, waffle, upgrades } from 'hardhat'
 import { getAdminAddress } from '@openzeppelin/upgrades-core'
 import { Factory } from '../typechain/Factory'
 import { expect } from './shared/expect'
@@ -27,7 +27,9 @@ describe('Factory', () => {
     const factoryFactory = await ethers.getContractFactory('Factory')
     const Pool = await ethers.getContractFactory('Pool')
     const pool = await Pool.deploy()
-    const factory = await upgrades.deployProxy(factoryFactory, [pool.address, pool.address], { initializer: 'initialize' })
+    const factory = await upgrades.deployProxy(factoryFactory, [pool.address, pool.address], {
+      initializer: 'initialize',
+    })
     proxyAdmin = await getAdminAddress(ethers.provider, factory.address)
     await factory.setPoolImplementationAdmin(proxyAdmin)
     return factory as Factory
@@ -53,8 +55,8 @@ describe('Factory', () => {
   })
 
   it('factory bytecode size', async () => {
-      expect(((await waffle.provider.getCode(factory.address)).length - 2) / 2).to.matchSnapshot()
-    })
+    expect(((await waffle.provider.getCode(factory.address)).length - 2) / 2).to.matchSnapshot()
+  })
 
   it('pool bytecode size', async () => {
     await factory.createPool(TEST_ADDRESSES[0], TEST_ADDRESSES[1], FeeAmount.MEDIUM)
