@@ -22,4 +22,6 @@ jobs:
       - name: Test
         env:
           CHECK_CONTRACT_SIZE: true
-        run: npx hardhat test
+        run: |
+          npx hardhat compile
+          npx hardhat test
