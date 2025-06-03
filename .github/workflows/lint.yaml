@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
+      - uses: actions/checkout@v4
+
       - name: Setup tools
         uses: ./.github/actions/setup-tools
         with:
