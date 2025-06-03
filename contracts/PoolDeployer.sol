@@ -5,7 +5,7 @@ import './interfaces/IPoolDeployer.sol';
 
 import './Pool.sol';
 
-import "@openzeppelin/contracts/proxy/TransparentUpgradeableProxy.sol";
+import '@openzeppelin/contracts/proxy/TransparentUpgradeableProxy.sol';
 
 contract PoolDeployer is IPoolDeployer {
     struct Parameters {
@@ -35,11 +35,13 @@ contract PoolDeployer is IPoolDeployer {
         uint24 fee,
         int24 tickSpacing
     ) internal returns (address pool) {
-        pool = address(new TransparentUpgradeableProxy{salt: keccak256(abi.encode(token0, token1, fee))}(
-            poolImplementationAddress,
-            proxyAdmin,
-            ""
-        ));
+        pool = address(
+            new TransparentUpgradeableProxy{salt: keccak256(abi.encode(token0, token1, fee))}(
+                poolImplementationAddress,
+                proxyAdmin,
+                ''
+            )
+        );
 
         Pool(pool).initializePool(factory, token0, token1, fee, tickSpacing);
     }
