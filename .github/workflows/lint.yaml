@@ -7,6 +7,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: write
+
 jobs:
   lint:
     runs-on: ubuntu-22.04
@@ -26,3 +29,4 @@ jobs:
           prettier: true
           auto_fix: false
           prettier_extensions: 'css,html,js,json,jsx,md,sass,scss,ts,tsx,vue,yaml,yml,sol'
+          prettier_auto_fix: false
