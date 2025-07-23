@@ -148,7 +148,7 @@ describe('Factory', () => {
     })
   })
 
-  describe.only('#enableFeeAmount', () => {
+  describe('#enableFeeAmount', () => {
     it('fails if caller is not owner', async () => {
       await expect(factory.connect(other).enableFeeAmount(100, 2)).to.be.reverted
     })
