@@ -18,6 +18,10 @@
   "files": [
     "contracts/interfaces",
     "contracts/libraries",
+    "contracts/Factory.sol",
+    "contracts/Pool.sol",
+    "contracts/PoolDeployer.sol",
+    "contracts/NoDelegateCall.sol",
     "artifacts/contracts/Factory.sol/Factory.json",
     "artifacts/contracts/Pool.sol/Pool.json",
     "artifacts/contracts/PoolDeployer.sol/PoolDeployer.json",
