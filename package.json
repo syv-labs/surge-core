@@ -1,7 +1,7 @@
 {
   "name": "@syvlabshq/surge-core",
   "description": "🦄 Core smart contracts of Syv labs",
-  "license": "BUSL-1.1",
+  "license": "GPL-2.0-or-later",
   "publishConfig": {
     "access": "public"
   },
@@ -16,6 +16,7 @@
     "url": "https://github.com/syv-labs/surge-core"
   },
   "files": [
+    "LICENSE",
     "contracts/interfaces",
     "contracts/libraries",
     "artifacts/contracts/Factory.sol/Factory.json",
