@@ -1,5 +1,5 @@
 {
-  "name": "@syv-labs/surge-core",
+  "name": "@syvlabshq/surge-core",
   "description": "🦄 Core smart contracts of Syv labs",
   "license": "BUSL-1.1",
   "publishConfig": {
@@ -25,7 +25,8 @@
     "artifacts/contracts/interfaces/**/*.json",
     "!artifacts/contracts/interfaces/**/*.dbg.json",
     "!artifacts/contracts/**/build-info",
-    "!artifacts/contracts/test/**"
+    "!artifacts/contracts/test/**",
+    "hardhat.config.ts"
   ],
   "engines": {
     "node": ">=10"
