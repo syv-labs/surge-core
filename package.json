@@ -1,5 +1,5 @@
 {
-  "name": "@syv-labs/surge-core",
+  "name": "@syvlabshq/surge-core",
   "description": "🦄 Core smart contracts of Syv labs",
   "license": "BUSL-1.1",
   "publishConfig": {
@@ -57,6 +57,9 @@
   },
   "scripts": {
     "compile": "hardhat compile",
-    "test": "hardhat test"
+    "test": "hardhat test",
+    "build": "hardhat clean && hardhat compile",
+    "release": "npm publish",
+    "release-snapshot": "npm version 0.0.0-snapshot.$(git rev-parse --short HEAD) --git-tag-version=false && npm publish --no-git-checks --tag snapshot --access public"
   }
 }
