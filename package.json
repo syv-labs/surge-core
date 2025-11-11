@@ -57,9 +57,6 @@
   },
   "scripts": {
     "compile": "hardhat compile",
-    "test": "hardhat test",
-    "build": "hardhat clean && hardhat compile",
-    "release": "npm publish",
-    "release-snapshot": "npm version 0.0.0-snapshot.$(git rev-parse --short HEAD) --git-tag-version=false && npm publish --no-git-checks --tag snapshot --access public"
+    "test": "hardhat test"
   }
 }
