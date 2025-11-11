@@ -16,18 +16,15 @@
     "url": "https://github.com/syv-labs/surge-core"
   },
   "files": [
+    "contracts/",
+    "artifacts/contracts/",
     "LICENSE",
-    "contracts/interfaces",
-    "contracts/libraries",
-    "artifacts/contracts/Factory.sol/Factory.json",
-    "artifacts/contracts/Pool.sol/Pool.json",
-    "artifacts/contracts/PoolDeployer.sol/PoolDeployer.json",
-    "artifacts/contracts/NoDelegateCall.sol/NoDelegateCall.json",
-    "artifacts/contracts/interfaces/**/*.json",
-    "!artifacts/contracts/interfaces/**/*.dbg.json",
+    "hardhat.config.ts",
+    "README.md",
+    "!artifacts/contracts/**/*.dbg.json",
     "!artifacts/contracts/**/build-info",
-    "!artifacts/contracts/test/**",
-    "hardhat.config.ts"
+    "!contracts/test/**",
+    "!artifacts/contracts/test/**"
   ],
   "engines": {
     "node": ">=10"
