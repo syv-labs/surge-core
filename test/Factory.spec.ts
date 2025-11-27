@@ -63,6 +63,7 @@ describe('Factory', () => {
   })
 
   it('initial enabled fee amounts', async () => {
+    expect(await factory.feeAmountTickSpacing(FeeAmount.LOWEST)).to.eq(TICK_SPACINGS[FeeAmount.LOWEST])
     expect(await factory.feeAmountTickSpacing(FeeAmount.LOW)).to.eq(TICK_SPACINGS[FeeAmount.LOW])
     expect(await factory.feeAmountTickSpacing(FeeAmount.MEDIUM)).to.eq(TICK_SPACINGS[FeeAmount.MEDIUM])
     expect(await factory.feeAmountTickSpacing(FeeAmount.HIGH)).to.eq(TICK_SPACINGS[FeeAmount.HIGH])
@@ -90,6 +91,10 @@ describe('Factory', () => {
   }
 
   describe('#createPool', () => {
+    it('succeeds for lowest fee pool', async () => {
+      await createAndCheckPool(TEST_ADDRESSES, FeeAmount.LOWEST)
+    })
+
     it('succeeds for low fee pool', async () => {
       await createAndCheckPool(TEST_ADDRESSES, FeeAmount.LOW)
     })
@@ -162,15 +167,15 @@ describe('Factory', () => {
       await expect(factory.enableFeeAmount(500, 16834)).to.be.reverted
     })
     it('fails if already initialized', async () => {
-      await factory.enableFeeAmount(100, 5)
-      await expect(factory.enableFeeAmount(100, 10)).to.be.reverted
+      await factory.enableFeeAmount(250, 5)
+      await expect(factory.enableFeeAmount(250, 10)).to.be.reverted
     })
     it('sets the fee amount in the mapping', async () => {
-      await factory.enableFeeAmount(100, 5)
-      expect(await factory.feeAmountTickSpacing(100)).to.eq(5)
+      await factory.enableFeeAmount(250, 5)
+      expect(await factory.feeAmountTickSpacing(250)).to.eq(5)
     })
     it('emits an event', async () => {
-      await expect(factory.enableFeeAmount(100, 5)).to.emit(factory, 'FeeAmountEnabled').withArgs(100, 5)
+      await expect(factory.enableFeeAmount(250, 5)).to.emit(factory, 'FeeAmountEnabled').withArgs(250, 5)
     })
   })
 })
