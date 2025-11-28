@@ -65,6 +65,7 @@ describe('Factory', () => {
   it('initial enabled fee amounts', async () => {
     expect(await factory.feeAmountTickSpacing(FeeAmount.LOWEST)).to.eq(TICK_SPACINGS[FeeAmount.LOWEST])
     expect(await factory.feeAmountTickSpacing(FeeAmount.LOW)).to.eq(TICK_SPACINGS[FeeAmount.LOW])
+    expect(await factory.feeAmountTickSpacing(FeeAmount.MEDIUM_LOW)).to.eq(TICK_SPACINGS[FeeAmount.MEDIUM_LOW])
     expect(await factory.feeAmountTickSpacing(FeeAmount.MEDIUM)).to.eq(TICK_SPACINGS[FeeAmount.MEDIUM])
     expect(await factory.feeAmountTickSpacing(FeeAmount.HIGH)).to.eq(TICK_SPACINGS[FeeAmount.HIGH])
   })
@@ -97,6 +98,10 @@ describe('Factory', () => {
 
     it('succeeds for low fee pool', async () => {
       await createAndCheckPool(TEST_ADDRESSES, FeeAmount.LOW)
+    })
+
+    it('succeeds for medium low fee pool', async () => {
+      await createAndCheckPool(TEST_ADDRESSES, FeeAmount.MEDIUM_LOW)
     })
 
     it('succeeds for medium fee pool', async () => {
