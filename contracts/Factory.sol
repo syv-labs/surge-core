@@ -33,8 +33,12 @@ contract Factory is Initializable, IFactory, PoolDeployer {
         owner = msg.sender;
         emit OwnerChanged(address(0), msg.sender);
 
+        feeAmountTickSpacing[100] = 1;
+        emit FeeAmountEnabled(100, 1);
         feeAmountTickSpacing[500] = 10;
         emit FeeAmountEnabled(500, 10);
+        feeAmountTickSpacing[1000] = 20;
+        emit FeeAmountEnabled(1000, 20);
         feeAmountTickSpacing[3000] = 60;
         emit FeeAmountEnabled(3000, 60);
         feeAmountTickSpacing[10000] = 200;
